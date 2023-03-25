@@ -1,7 +1,7 @@
 import { assertEquals, assertNotEquals, assertRejects } from "https://deno.land/std@0.128.0/testing/asserts.ts";
-import { cacheExchangeRates, exchangeRatesMap, getSecurity } from "./data.ts";
 import { CurrencyCode, ETF, SecurityType } from "./enums.ts";
 import { InformativeError } from "./InformativeError.ts";
+import { getCurrencyExchangeRatesMap, getSecurity } from "./data.ts";
 
 Deno.test({
     name: "EURUSD exchange rates between 21 February 2022 and 25 February 2022",
@@ -11,8 +11,6 @@ Deno.test({
     fn: async () => {
         const start = new Date("21 February 2022 00:00:00 GMT");
         const end = new Date("25 February 2022 00:00:00 GMT");
-        await cacheExchangeRates(start, end, CurrencyCode.USD);
-        assertNotEquals(exchangeRatesMap.get(CurrencyCode.USD), undefined);
         const expectedRates: { [date: string]: number} = {
             "2022-02-21": 1.1338,
             "2022-02-22": 1.1342,
@@ -20,7 +18,7 @@ Deno.test({
             "2022-02-24": 1.1163,
             "2022-02-25": 1.1216,
         };
-        const rates = <Map<string, number>> exchangeRatesMap.get(CurrencyCode.USD);
+        const rates = await getCurrencyExchangeRatesMap(start, end, CurrencyCode.USD);
 
         for(const date in expectedRates) {
             assertEquals(expectedRates[date], rates.get(date));

@@ -4,7 +4,6 @@ export enum Broker {
     DEGIRO = "DEGIRO",
     ETRADE = "ETrade",
 }
-
 export const brokers: Broker[] = [
     Broker.InteractiveBrokers,
     Broker.Trading212,
