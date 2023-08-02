@@ -40,7 +40,7 @@
     {:else if selectedBroker === Broker.DEGIRO}
         <BrokerAdapter selectedBrokerNumber={selectedBrokerNumber} broker={selectedBroker} brokerAdapter={DEGIROAdapter} />
     {:else if selectedBroker === Broker.ETRADE}
-			<Adapter selectedBrokerNumber={selectedBrokerNumber} broker={selectedBroker} brokerAdapter={ETradeAdapter} />
+			<BrokerAdapter selectedBrokerNumber={selectedBrokerNumber} broker={selectedBroker} brokerAdapter={ETradeAdapter} />
 		{/if}
 </div>
 {/each}

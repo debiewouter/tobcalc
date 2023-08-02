@@ -27,9 +27,9 @@ export const ETradeAdapter: BrokerAdapter = async data => {
   if(dateColumnIndex === -1) {
     throw new InformativeError("etrade_adapter.date_column_index", columnNames);
   }
-  // if(isinColumnIndex === -1) {
-  //   throw new InformativeError("ibkr_adapter.isin_column_index", columnNames);
-  // }
+  if(isinColumnIndex === -1) {
+    throw new InformativeError("etrade_adapter.isin_column_index", columnNames);
+  }
   if(quantityColumnIndex === -1) {
     throw new InformativeError("etrade_adapter.value_column_index", columnNames);
   }
@@ -55,9 +55,9 @@ export const ETradeAdapter: BrokerAdapter = async data => {
         // Save date in a variable so we can easily reuse while creating a Date object
         const dateString = row[dateColumnIndex];
 
-        // if(row[isinColumnIndex] === undefined) {
-        //     throw new InformativeError("ibkr_adapter.isin_undefined", { row, columnNames });
-        // }
+        if(row[isinColumnIndex] === undefined) {
+            throw new InformativeError("etrade_adapter.isin_undefined", { row, columnNames });
+        }
         if(row[currencyCodeColumnIndex] === undefined) {
             throw new InformativeError("etrade_adapter.currency_code_undefined", { row, columnNames });
         }
