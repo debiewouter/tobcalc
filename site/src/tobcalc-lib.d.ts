@@ -412,7 +412,7 @@ export function isNameRegistered(name: string): boolean;
 export type ExchangeRatesMap = Map<CurrencyCode, Map<string, number>>;
 
 export function setECBHostname(hostname: string): void;
-export function setYahooFinanceHostname(hostname: string): void;
+export function setJustETFHostname(hostname: string): void;
 export function setYahooFinanceQuery1Hostname(hostname: string): void;
 export function getExchangeRatesMap(currencyPeriods: { start: Date, end: Date, currencyCode: CurrencyCode }[]): Promise<ExchangeRatesMap>;
 export function getCurrencyExchangeRatesMap(start: Date, end: Date, currencyCode: CurrencyCode): Promise<Map<string, number>>;
@@ -446,7 +446,7 @@ export function fillPdf(
     }
 ): Promise<Uint8Array>;
 
-export function formatMoney(value: number, currencyCode: CurrencyCode): string;
+export function formatMoney(value: number, currencyCode?: string, separators?: {decimal?: string, thousand?: string}): string;
 
 export interface BrokerTransaction {
     date: Date;
@@ -490,3 +490,4 @@ export const IBKRAdapter: BrokerAdapter;
 export const Trading212Adapter: BrokerAdapter;
 export const DEGIROAdapter: BrokerAdapter;
 export const ETradeAdapter: BrokerAdapter;
+export const BoursoramaAdapter: BrokerAdapter;
